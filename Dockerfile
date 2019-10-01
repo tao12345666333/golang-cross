@@ -23,8 +23,9 @@ FROM base AS osx-sdk
 ARG OSX_SDK
 ARG OSX_SDK_SUM
 # ADD https://s3.dockerproject.org/darwin/v2/${OSX_SDK}.tar.xz "${OSX_CROSS_PATH}/tarballs/${OSX_SDK}.tar.xz"
-ADD https://github.com/phracker/MacOSX-SDKs/releases/download/10.13/${OSX_SDK}.tar.xz "${OSX_CROSS_PATH}/tarballs/${OSX_SDK}.tar.xz"
-RUN echo "${OSX_SDK_SUM}"  "${OSX_CROSS_PATH}/tarballs/${OSX_SDK}.tar.xz" | sha256sum -c -
+# ADD https://github.com/phracker/MacOSX-SDKs/releases/download/10.13/${OSX_SDK}.tar.xz "${OSX_CROSS_PATH}/tarballs/${OSX_SDK}.tar.xz"
+ADD https://github.com/ndeloof/golang-cross/raw/113fix/${OSX_SDK}.tar.xz "${OSX_CROSS_PATH}/tarballs/${OSX_SDK}.tar.xz"
+# RUN echo "${OSX_SDK_SUM}"  "${OSX_CROSS_PATH}/tarballs/${OSX_SDK}.tar.xz" | sha256sum -c -
 
 FROM base AS osx-cross-base
 ARG DEBIAN_FRONTEND=noninteractive
