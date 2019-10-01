@@ -46,7 +46,7 @@ RUN git clone https://github.com/tpoechtrager/osxcross.git . \
  && rm -rf ./.git
 COPY --from=osx-sdk "${OSX_CROSS_PATH}/." "${OSX_CROSS_PATH}/"
 ARG OSX_VERSION_MIN
-RUN UNATTENDED=yes OSX_VERSION_MIN=${OSX_VERSION_MIN} ./build.sh
+RUN OCDEBUG=1 UNATTENDED=yes OSX_VERSION_MIN=${OSX_VERSION_MIN} ./build.sh
 
 FROM base AS libtool
 ARG LIBTOOL_VERSION
