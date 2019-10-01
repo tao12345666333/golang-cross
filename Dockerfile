@@ -33,6 +33,8 @@ ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update -qq && apt-get install -y -q --no-install-recommends \
     clang \
     file \
+    libclang \
+    libc++-dev \
     llvm \
     patch \
     xz-utils \
