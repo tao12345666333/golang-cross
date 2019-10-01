@@ -36,6 +36,7 @@ RUN apt-get update -qq && apt-get install -y -q --no-install-recommends \
     libclang \
     libc++-dev \
     llvm \
+    llvm-7-dev \
     patch \
     xz-utils \
  && rm -rf /var/lib/apt/lists/*
