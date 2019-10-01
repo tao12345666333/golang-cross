@@ -1,0 +1,37 @@
+image: docker:latest
+
+services:
+  - docker:dind
+
+variables:
+  DOCKER_DRIVER: overlay2
+  IMAGE_NAME: $CI_REGISTRY/$CI_PROJECT_PATH:$CI_COMMIT_SHORT_SHA
+
+stages:
+  - build-latest
+  - build-normal
+
+before_script:
+  - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+
+build:
+  stage: build
+  script:
+    - docker build -t "$IMAGE_NAME" .
+    - docker images
+    - docker push "$IMAGE_NAME"
+
+test:
+  stage: test
+  script:
+    - docker pull "$IMAGE_NAME"
+    - apk add --no-cache git make
+    - git clone https://github.com/docker/cli.git
+    - cd cli
+    - make -f docker.Makefile clean 
+    - make -f docker.Makefile cross
+
+
+
+after_script:
+  - docker logout $CI_REGISTRY
