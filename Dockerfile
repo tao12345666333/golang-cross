@@ -6,7 +6,7 @@ ARG OSX_SDK=MacOSX10.11.sdk
 ARG OSX_SDK_SUM=89aa34dfe5bcbc7d53d3c55a84b35ac810ecfbcdd16a64c9667992b0c36c60c4
 
 # OSX-cross parameters. Go 1.11 requires OSX >= 10.10
-ARG OSX_VERSION_MIN=10.10
+ARG OSX_VERSION_MIN=10.11
 ARG OSX_CROSS_COMMIT=a9317c18a3a457ca0a657f08cc4d0d43c6cf8953
 
 # Libtool parameters
@@ -35,6 +35,7 @@ RUN apt-get update -qq && apt-get install -y -q --no-install-recommends \
     file \
     llvm \
     llvm-dev \
+    libc++-dev \
     patch \
     xz-utils \
  && rm -rf /var/lib/apt/lists/*
