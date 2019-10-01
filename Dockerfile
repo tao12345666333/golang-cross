@@ -35,7 +35,7 @@ RUN apt-get update -qq && apt-get install -y -q --no-install-recommends \
     clang \
     file \
     llvm \
-    llvm-dev \
+    #llvm-dev \
     libc++-dev \
     patch \
     xz-utils \
@@ -49,7 +49,7 @@ RUN git clone https://github.com/tpoechtrager/osxcross.git . \
  && rm -rf ./.git
 COPY --from=osx-sdk "${OSX_CROSS_PATH}/." "${OSX_CROSS_PATH}/"
 ARG OSX_VERSION_MIN
-RUN OCDEBUG=1 UNATTENDED=yes OSX_VERSION_MIN=${OSX_VERSION_MIN} ./build.sh
+RUN UNATTENDED=yes OSX_VERSION_MIN=${OSX_VERSION_MIN} ./build.sh
 
 FROM base AS libtool
 ARG LIBTOOL_VERSION
