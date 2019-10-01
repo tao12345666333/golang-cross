@@ -3,7 +3,7 @@ ARG GO_VERSION=1.13.0
 # OS-X SDK parameters
 # NOTE: when changing version here, make sure to also change OSX_CODENAME below to match
 ARG OSX_SDK=MacOSX10.11.sdk
-ARG OSX_SDK_SUM=522c0fd491c7fac4a8660b518c36c9bea8e37f36b10a292eed9a0b57c3dd5604
+ARG OSX_SDK_SUM=89aa34dfe5bcbc7d53d3c55a84b35ac810ecfbcdd16a64c9667992b0c36c60c4
 
 # OSX-cross parameters. Go 1.11 requires OSX >= 10.10
 ARG OSX_VERSION_MIN=10.10
@@ -23,7 +23,7 @@ FROM base AS osx-sdk
 ARG OSX_SDK
 ARG OSX_SDK_SUM
 # ADD https://s3.dockerproject.org/darwin/v2/${OSX_SDK}.tar.xz "${OSX_CROSS_PATH}/tarballs/${OSX_SDK}.tar.xz"
-ADD https://github.com/phracker/MacOSX-SDKs/releases/download/MacOSX10.11.sdk/${OSX_SDK}.tar.xz "${OSX_CROSS_PATH}/tarballs/${OSX_SDK}.tar.xz"
+ADD https://github.com/phracker/MacOSX-SDKs/releases/download/10.13/${OSX_SDK}.tar.xz "${OSX_CROSS_PATH}/tarballs/${OSX_SDK}.tar.xz"
 RUN echo "${OSX_SDK_SUM}"  "${OSX_CROSS_PATH}/tarballs/${OSX_SDK}.tar.xz" | sha256sum -c -
 
 FROM base AS osx-cross-base
