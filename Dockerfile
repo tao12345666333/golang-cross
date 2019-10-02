@@ -7,7 +7,7 @@ ARG OSX_SDK_SUM=98cdd56e0f6c1f9e1af25e11dd93d2e7d306a4aa50430a2bc6bc083ac67efbb8
 
 # OSX-cross parameters. Go 1.13 requires OSX >= 10.11
 ARG OSX_VERSION_MIN=10.11
-ARG OSX_CROSS_COMMIT=a9317c18a3a457ca0a657f08cc4d0d43c6cf8953
+ARG OSX_CROSS_COMMIT=f4b0948abd9cad576d2def3d1cd52b9ef956ef52
 
 # Libtool parameters
 ARG LIBTOOL_VERSION=2.4.6
@@ -33,8 +33,12 @@ ARG DEBIAN_FRONTEND=noninteractive
 # TODO split these into "build-time" and "runtime" dependencies so that build-time deps do not end up in the final image
 RUN apt-get update -qq && apt-get install -y -q --no-install-recommends \
     clang \
+    cmake \
     file \
+    libxml2-dev \
+    libssl-dev \
     llvm \
+    lzma-dev \
     patch \
     xz-utils \
  && rm -rf /var/lib/apt/lists/*
